@@ -76,10 +76,10 @@ deletePost:  async (req, res) => {
   try {
     const post = await getPostData({_id:req.params.id});
     if (!post) {
-      return badReq(res, 'Post not found' );
+      return badReq(res,400, 'Post not found' );
     }
     if (post.createdBy.toString() !== req.user.id) {
-      return badReq(401, 'User not authorized');
+      return badReq(res,401, 'User not authorized');
     }
     let deleted=await deletePostData({_id:req.params.id});
     if(deleted){

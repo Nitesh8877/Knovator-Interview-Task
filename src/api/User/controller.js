@@ -7,7 +7,9 @@ module.exports={
     
 register: async (req, res) => {
     let { name, email, password } = req.body;
-  
+    if(!name) {return badReq(res, "Name is required")}
+    if(!email) {return badReq(res, "Email is required")}
+    if(!password) {return badReq(res, "Password is required")}
     try {
       let user = await getUserData({ email });
       if (user) {
@@ -28,7 +30,9 @@ register: async (req, res) => {
   // Login User
  login: async (req, res) => {
     let { email, password } = req.body;
-    console.log("name")
+   
+    if(!email) {return badReq(res, "Email is required")}
+    if(!password) {return badReq(res, "Password is required")}
     try {
       const user = await getUserData({ email });
       if (!user) {

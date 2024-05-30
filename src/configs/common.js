@@ -6,9 +6,9 @@ const rm=(res,code,message,data={})=>{
         data:data,
     })
 }
-const badReq=(res,message="Bad Request")=>{
+const badReq=(res,code =400,message="Bad Request")=>{
     res.send({
-        status:400,
+        status:code,
         message:message,
     })
 }
